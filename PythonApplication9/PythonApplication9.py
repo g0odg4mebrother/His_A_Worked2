@@ -9,51 +9,42 @@
 
 
 class DoublyLinkedList:
-    """Двусвязный список"""
     
     def __init__(self):
-        """Инициализация пустого списка"""
         self.head = None
         self.tail = None
         self._size = 0
     
     def __len__(self):
-        """Возвращает количество элементов в списке"""
         return self._size
     
     def __str__(self):
-        """Строковое представление списка"""
         elements = []
         current = self.head
         while current:
             elements.append(str(current.data))
             current = current.next
-        return " <-> ".join(elements) if elements else "Пустой список"
+        return " <-> ".join(elements) if elements else 
     
     def __repr__(self):
         return f"DoublyLinkedList({self.__str__()})"
     
     def __getitem__(self, index):
-        """Получение элемента по индексу через синтаксис list[index]"""
         return self.get_at_index(index)
     
     def __setitem__(self, index, value):
-        """Изменение элемента по индексу через синтаксис list[index] = value"""
         self._validate_index(index)
         current = self._traverse_to_index(index)
         current.data = value
     
     def is_empty(self):
-        """Проверка на пустоту списка"""
         return self._size == 0
     
     def _validate_index(self, index):
-        """Проверка корректности индекса"""
         if index < 0 or index >= self._size:
             raise IndexError(f"Индекс {index} вне диапазона. Допустимый диапазон: 0-{self._size-1}")
     
     def _traverse_to_index(self, index):
-        """Перемещение к узлу по указанному индексу"""
         self._validate_index(index)
         
         if index <= self._size // 2:
@@ -68,7 +59,6 @@ class DoublyLinkedList:
         return current
     
     def insert_at_beginning(self, data):
-        """Вставка элемента в начало списка"""
         new_node = Node(data)
         
         if self.is_empty():
@@ -82,7 +72,6 @@ class DoublyLinkedList:
         return self
     
     def insert_at_end(self, data):
-        """Вставка элемента в конец списка"""
         new_node = Node(data)
         
         if self.is_empty():
@@ -96,7 +85,6 @@ class DoublyLinkedList:
         return self
     
     def insert_at_index(self, index, data):
-        """Вставка элемента в произвольную позицию по индексу"""
         if index == 0:
             return self.insert_at_beginning(data)
         elif index == self._size:
@@ -117,7 +105,6 @@ class DoublyLinkedList:
         return self
     
     def find_index(self, data):
-        """Поиск индекса элемента по значению. Возвращает первый найденный индекс или -1"""
         current = self.head
         index = 0
         
@@ -130,7 +117,6 @@ class DoublyLinkedList:
         return -1
     
     def find_all_indices(self, data):
-        """Поиск всех индексов элемента по значению"""
         current = self.head
         index = 0
         indices = []
@@ -144,7 +130,6 @@ class DoublyLinkedList:
         return indices
     
     def remove_at_index(self, index):
-        """Удаление элемента по индексу"""
         self._validate_index(index)
         
         if self._size == 1: 
@@ -172,7 +157,6 @@ class DoublyLinkedList:
         return data
     
     def remove_by_value(self, data):
-        """Удаление первого найденного элемента по значению. Возвращает True если удален"""
         index = self.find_index(data)
         if index != -1:
             self.remove_at_index(index)
@@ -180,12 +164,10 @@ class DoublyLinkedList:
         return False
     
     def get_at_index(self, index):
-        """Получение элемента по индексу"""
         node = self._traverse_to_index(index)
         return node.data
     
     def to_list(self):
-        """Преобразование списка в обычный Python list"""
         result = []
         current = self.head
         while current:
@@ -194,20 +176,17 @@ class DoublyLinkedList:
         return result
     
     def from_list(self, data_list):
-        """Создание списка из обычного Python list"""
         self.clear()
         for item in data_list:
             self.insert_at_end(item)
         return self
     
     def clear(self):
-        """Очистка списка"""
         self.head = None
         self.tail = None
         self._size = 0
     
     def reverse(self):
-        """Разворот списка"""
         current = self.head
         self.tail = self.head
         
@@ -223,14 +202,12 @@ class DoublyLinkedList:
         return self
     
     def traverse_forward(self):
-        """Генератор для обхода списка от начала к концу"""
         current = self.head
         while current:
             yield current.data
             current = current.next
     
     def traverse_backward(self):
-        """Генератор для обхода списка от конца к началу"""
         current = self.tail
         while current:
             yield current.data
@@ -285,4 +262,5 @@ if __name__ == "__main__":
     dll.reverse()
     print(f"После разворота: {dll}")
     dll.reverse()
+
 
