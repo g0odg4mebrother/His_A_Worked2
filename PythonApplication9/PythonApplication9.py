@@ -1,5 +1,4 @@
 ﻿class Node:
-    """Узел двусвязного списка"""
     def __init__(self, data):
         self.data = data
         self.prev = None
@@ -286,3 +285,4 @@ if __name__ == "__main__":
     dll.reverse()
     print(f"После разворота: {dll}")
     dll.reverse()
+
