@@ -102,7 +102,6 @@ class RegistrationApp:
         self.root.bind('<Return>', lambda event: self.register_user())
     
     def register_user(self):
-        """Обработчик регистрации пользователя"""
         username = self.username_entry.get().strip()
         password = self.password_entry.get().strip()
         
@@ -140,24 +139,20 @@ class RegistrationApp:
         self.username_entry.focus_set()
     
     def highlight_field(self, entry_field):
-        """Временное подсвечивание поля с ошибкой"""
         original_bg = entry_field.cget("bg")
         entry_field.configure(bg="#ffcccc")  
         
         self.root.after(1500, lambda: entry_field.configure(bg=original_bg))
     
     def clear_fields(self):
-        """Очистка полей ввода"""
         self.username_entry.delete(0, tk.END)
         self.password_entry.delete(0, tk.END)
     
     def run(self):
-        """Запуск приложения"""
         self.root.mainloop()
 
 
 def toggle_password_visibility(password_entry, show_password_var):
-    """Переключение видимости пароля"""
     if show_password_var.get():
         password_entry.config(show="")
     else:
@@ -170,7 +165,6 @@ class EnhancedRegistrationApp(RegistrationApp):
         self.add_extra_features()
     
     def add_extra_features(self):
-        """Добавление дополнительных функций"""
         options_frame = tk.Frame(self.root, bg=self.bg_color)
         options_frame.pack(pady=10)
         
@@ -211,7 +205,6 @@ class EnhancedRegistrationApp(RegistrationApp):
 
 
 def main():
-    """Основная функция запуска приложения"""
     root = tk.Tk()
     
     app = EnhancedRegistrationApp(root)  
@@ -220,4 +213,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
